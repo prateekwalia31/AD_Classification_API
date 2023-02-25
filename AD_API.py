@@ -4,7 +4,7 @@ from tensorflow import keras
 import numpy as np
 import cv2
 
-AD_API = Flask(__name__)
+application = Flask(__name__)
 
 # Load the saved tf model from the saved_model directory
 
@@ -17,7 +17,7 @@ model = keras.models.load_model(saved_model_dir)
 labels = ['AD', 'CN', 'EMCI', 'MCI']
 
 
-@AD_API.route('/classify_image_ad', methods=['POST'])
+@application.route('/classify_image_ad', methods=['POST'])
 def classify_image_ad():
     # get an image from the request (key=image)
 
@@ -43,4 +43,4 @@ def classify_image_ad():
 
 if __name__ == '__main__':
     ''' Run the app'''
-    AD_API.run()
+    application.run()
