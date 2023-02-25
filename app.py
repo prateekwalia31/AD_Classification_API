@@ -17,6 +17,11 @@ model = keras.models.load_model(saved_model_dir)
 labels = ['AD', 'CN', 'EMCI', 'MCI']
 
 
+@app.route('/')
+def index():
+    return "Hello!"
+
+
 @app.route('/classify_image_ad', methods=['POST'])
 def classify_image_ad():
     # get an image from the request (key=image)
@@ -26,9 +31,9 @@ def classify_image_ad():
     # Loading and preprocessing the image
 
     input_image = cv2.imdecode(np.fromstring(image_file.read(), np.uint8), cv2.IMREAD_COLOR)
-    input_image = cv2.resize(input_image, (128, 128)) #Reshape to 128x128
+    input_image = cv2.resize(input_image, (128, 128))  # Reshape to 128x128
     input_image = np.expand_dims(input_image, axis=0)
-    input_image = input_image.astype('float32') / 255.0 #Normalize
+    input_image = input_image.astype('float32') / 255.0  # Normalize
 
     # Classify the received image using the loaded model
     prediction = model.predict(input_image)
