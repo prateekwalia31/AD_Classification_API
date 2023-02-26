@@ -1,11 +1,13 @@
 # Dependencies
 from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS, cross_origin
 from tensorflow import keras
 import numpy as np
 import cv2
 
 app = Flask(__name__)
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 # Load the saved tf model from the saved_model directory
 
 saved_model_dir = 'model_1'
@@ -28,6 +30,7 @@ def index():
 
 
 @app.route('/classify_image_ad', methods=['POST'])
+@cross_orign()
 def classify_image_ad():
     # get an image from the request (key=image)
 
