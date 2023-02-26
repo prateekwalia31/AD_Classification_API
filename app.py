@@ -48,7 +48,9 @@ def classify_image_ad():
     predicted_class_label = labels[predicted_class_index]
 
     # Returning the predicted class as a JSON response
-    return jsonify({'The MRI image belongs to the class': predicted_class_label})
+    response = jsonify({'The MRI image belongs to the class': predicted_class_label})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == '__main__':
