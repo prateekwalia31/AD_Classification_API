@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Request API</title>
+  </head>
+  <body>
+    <h1>Alzheimer's Disease Detection and Classification using MRI</h1>
+    <form method="POST" action="/classify_image_ad" enctype="multipart/form-data">
+      <label for="image">Please upload an MRI scan:</label>
+      <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png">
+      <br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

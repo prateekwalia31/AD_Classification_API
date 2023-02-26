@@ -1,5 +1,5 @@
 # Dependencies
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from tensorflow import keras
 import numpy as np
 import cv2
@@ -17,9 +17,14 @@ model = keras.models.load_model(saved_model_dir)
 labels = ['AD', 'CN', 'EMCI', 'MCI']
 
 
+@app.route('/request_api')
+def request_api():
+    return render_template('request_api.html')
+
+
 @app.route('/')
 def index():
-    return "Hello!"
+    return "Alzheimer's Disease Detection and Progression Classification!"
 
 
 @app.route('/classify_image_ad', methods=['POST'])
