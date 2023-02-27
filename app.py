@@ -17,7 +17,7 @@ model = keras.models.load_model(saved_model_dir)
 # class labels
 
 labels = ['AD', 'CN', 'EMCI', 'MCI']
-
+labels_full  = {'AD': "Alzheimer's Disease", 'CN': "No Alzheimer's Disease", 'EMCI': "Early Mild Cognitive Impairment", 'MCI':"Mild Cognitive Impairment"}
 
 @app.route('/request_api')
 def request_api():
@@ -26,7 +26,7 @@ def request_api():
 
 @app.route('/')
 def index():
-    return "Alzheimer's Disease Detection and Progression Classification!"
+    return "Page for Alzheimer's Disease."
 
 
 @app.route('/classify_image_ad', methods=['POST'])
@@ -51,7 +51,7 @@ def classify_image_ad():
     predicted_class_label = labels[predicted_class_index]
 
     # Returning the predicted class as a JSON response
-    response = jsonify({'The MRI image belongs to the class': predicted_class_label})
+    response = jsonify({'text': 'The MRI Scan indicates: ' + labels_full[predicted_class_label]})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
